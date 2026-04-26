@@ -27,14 +27,21 @@ public class WalletService {
     private final WalletRepository walletRepository;
     private final WalletStockRepository walletStockRepository;
     private final WalletMapper walletMapper;
+    private final AuditLogService auditLogService;
 
     @Transactional
     public void tradeStock(String walletId, String stockName, TradeStockRequest request) {
         OperationType operationType = toOperationType(request.type());
 
         switch (operationType) {
-            case BUY -> buyStock(walletId, stockName);
-            case SELL -> sellStock(walletId, stockName);
+            case BUY -> {
+                buyStock(walletId, stockName);
+                auditLogService.record(operationType, walletId, stockName);
+            }
+            case SELL -> {
+                sellStock(walletId, stockName);
+                auditLogService.record(operationType, walletId, stockName);
+            }
         }
     }
 
