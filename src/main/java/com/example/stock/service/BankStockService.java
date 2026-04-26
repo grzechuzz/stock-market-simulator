@@ -3,6 +3,7 @@ package com.example.stock.service;
 import com.example.stock.dto.bank.BankStocksResponse;
 import com.example.stock.dto.bank.SetBankStocksRequest;
 import com.example.stock.entity.BankStock;
+import com.example.stock.exception.DuplicateStockNameException;
 import com.example.stock.mapper.BankStockMapper;
 import com.example.stock.repository.BankStockRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class BankStockService {
 
         for (var stock : request.stocks()) {
             if (!stockNames.add(stock.name())) {
-                throw new IllegalArgumentException("Duplicate stock name: " + stock.name());
+                throw new DuplicateStockNameException(stock.name());
             }
         }
     }
