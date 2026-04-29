@@ -37,7 +37,7 @@ http://localhost:8080
 The port is passed as the first argument, so a different port can be used:
 
 ```sh
-./start.sh 9090
+sh start.sh 9090
 ```
 
 ## High Availability
