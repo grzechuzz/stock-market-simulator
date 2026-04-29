@@ -19,7 +19,7 @@ Stock price is fixed at `1`. Wallet balance is not tracked. Buy and sell operati
 Linux/macOS:
 
 ```sh
-./start.sh 8080
+sh start.sh 8080
 ```
 
 Windows PowerShell:
