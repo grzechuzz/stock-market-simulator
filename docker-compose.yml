@@ -1,4 +1,6 @@
 x-app: &app
+  build:
+    context: .
   image: stock-market:local
   environment:
     SERVER_PORT: 8080
@@ -34,8 +36,6 @@ services:
 
   app-1:
     <<: *app
-    build:
-      context: .
 
   app-2:
     <<: *app
